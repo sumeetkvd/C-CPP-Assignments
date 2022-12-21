@@ -1,0 +1,42 @@
+// Code your design here
+
+module freq_count(
+    input reset,
+    input clock,
+    input input_clock,
+    output reg freq_measurment
+);
+  
+  
+reg input_clock_rise_sync;
+wire input_clock_rise;
+reg  count;
+  
+  
+
+assign  input_clock_rise = ~input_clock_rise_sync & input_clock_rise_sync;
+
+  
+always @(posedge clock)
+  //initial
+  	begin
+  		input_clock_rise_sync  <= {input_clock_rise_sync,input_clock};
+   end
+  
+always @(posedge clock or negedge reset)
+    if(!reset) 
+      begin
+         count <= 14'd0;           
+         freq_measurment <= 14'd0;           
+      end 
+     
+     else 
+       begin
+         count <= count + 14'd1;  
+      		if(input_clock_rise) 
+              	begin
+                   count <= 14'd0;          
+                    freq_measurment <= 10000 / count;  
+        		end
+    	end
+endmodule

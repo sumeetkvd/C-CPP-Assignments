@@ -1,0 +1,147 @@
+1. Size of structure Data in snippet 1.
+Ans. struct Data {
+    double A;  // 8 Bytes
+    char B;    // 1 Bytes
+    char C;    // 1 Bytes
+    };
+
+    The size of the structure is: 10 Bytes
+
+
+2. Write a function to swap values of a structure by reference. The structure has an int and a char data.
+Ans. 
+
+
+#include <stdio.h>
+#include <conio.h>
+//#include <bits/stdc++.h>
+
+//using namespace std;
+
+
+struct structure_S1 {
+
+    int a;
+
+    char b;
+
+};
+
+void swap_struct (struct structure_S1 *o1, struct structure_S1 *o2){
+
+    printf("Before Swapping: obj1 = %d %c, obj2 = %d %c \n",o1->a,o1->b,o2->a,o2->b);
+
+    o1->a= o1->a + o2->a;
+
+    o2->a= o1->a - o2->a;
+
+    o1->a=o1->a-o2->a;
+
+    o1->b = o1->b+ o2->b; o2->b = o1->b-o2->b;
+
+    o1->b= o1->b-o2->b;
+
+    printf("After Swapping: obj1 = %d %c, obj2 = %d %c \n",o1->a,o1->b,o2->a,o2->b);
+
+}
+
+int main() {
+
+    struct structure_S1 obj1 = {1,'A'};
+
+    struct structure_S1 obj2 = {2, 'B'};
+
+    swap_struct (&obj1,&obj2);
+
+    return 0;
+
+}
+
+
+
+3. Create a structured Time, that has hours in 24 24 formats,
+   minutes, and seconds. Then create a function that returns the difference
+   between two Time structures. The return value should be a Time structure.
+
+
+Ans. 
+
+
+#include <stdio.h>
+struct TIME {
+   int seconds;
+   int minutes;
+   int hours;
+};
+
+void differenceBetweenTimePeriod(struct TIME t1,
+                                 struct TIME t2,
+                                 struct TIME *diff);
+
+int main() {
+   struct TIME startTime, stopTime, diff;
+
+   printf("Enter the start time. \n");
+   printf("Enter hours, minutes and seconds: ");
+   scanf("%d %d %d", &startTime.hours,
+         &startTime.minutes,
+         &startTime.seconds);
+
+   printf("Enter the stop time. \n");
+   printf("Enter hours, minutes and seconds: ");
+   scanf("%d %d %d", &stopTime.hours,
+         &stopTime.minutes,
+         &stopTime.seconds);
+
+   differenceBetweenTimePeriod(startTime, stopTime, &diff);
+   printf("\nTime Difference: %d:%d:%d - ", startTime.hours,
+          startTime.minutes,
+          startTime.seconds);
+   printf("%d:%d:%d ", stopTime.hours,
+          stopTime.minutes,
+          stopTime.seconds);
+   printf("= %d:%d:%d\n", diff.hours,
+          diff.minutes,
+          diff.seconds);
+   return 0;
+}
+
+void differenceBetweenTimePeriod(struct TIME start,
+                                 struct TIME stop,
+                                 struct TIME *diff) {
+   while (stop.seconds > start.seconds) {
+      --start.minutes;
+      start.seconds += 60;
+   }
+   diff->seconds = start.seconds - stop.seconds;
+   while (stop.minutes > start.minutes) {
+      --start.hours;
+      start.minutes += 60;
+   }
+   diff->minutes = start.minutes - stop.minutes;
+   diff->hours = start.hours - stop.hours;
+}
+
+
+4. How to use sizeof to find size of structure.
+
+Ans. 
+
+#include<stdio.h>
+ 
+struct stud {
+   int roll;
+   char name[10];
+   int marks;
+};
+ 
+int main() {
+   int size;
+   struct stud s;
+ 
+   size = sizeof(s);
+   printf("nSize of Structure : %d", size);
+ 
+   return(0);
+}
+

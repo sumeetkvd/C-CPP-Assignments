@@ -1,0 +1,51 @@
+1. Write a function to return a copy of the string passed in the argument.
+
+Ans.
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  char str1[20] = "C programming";
+  char str2[20];
+
+  // copying str1 to str2
+  strcpy(str2, str1);
+
+  puts(str2); // C programming
+
+  return 0;
+}
+
+
+2. Define memory fragmentation.
+
+Ans. Fragmentation is an unwanted problem where the memory blocks cannot be allocated 
+     to the processes due to their small size and the blocks remain unused. It can also
+     be understood that when the processes are loaded and removed from the memory, they 
+     create a free space or hole in the memory. These small blocks cannot be allocated to
+     new upcoming processes and result in inefficient use of memory.
+
+3. Why return type of malloc is void.
+
+Ans. There are two reasons, first, malloc doesn't know why you need memory. So it just returns
+     the number of bytes asked to return. Secondly (I am not sure this is purposefully done 
+     for this reason) you cannot dereference void * easily so it can help you to avoid accidents.
+
+
+4. Why original pointer needs to modify after the realloc() call.
+
+Ans. The size of dynamically allocated memory can be changed by using realloc().
+     realloc() deallocates the old object pointed to by ptr and returns a pointer to a new object
+     that has the size specified by size. The contents of the new object are identical to that
+     of the old object prior to deallocation, up to the lesser of the new and old sizes. Any
+     bytes in the new object beyond the size of the old object have indeterminate values.
+
+5. Why memory leak is bad. 
+
+Ans. Memory leaks are bad because your program claims resources and keeps them occupied for its
+     entire lifecycle, even though it does not need them anymore. If you have a static leak the
+     size of X when the program starts and it does not grow over time it's unfortunate, but
+     probably not the end of the world. If you have a leak every time you perform Y, it's a much
+     bigger problem, as the program's memory consumption will continue growing and will eventually
+     take up an unreasonable amount of resources.

@@ -1,0 +1,218 @@
+(1). Write a program to create a copy of the file by reading and writing into another file.
+
+Ans:
+
+// copying the content of a .txt file
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	string line;
+	// For writing text file
+	// Creating ofstream & ifstream class object
+	ifstream ini_file{
+		"original.txt"
+	}; // This is the original file
+	ofstream out_file{ "copy.txt" };
+	if (ini_file && out_file) {
+
+		while (getline(ini_file, line)) {
+			out_file << line << "\n";
+		}
+		cout << "Copy Finished \n";
+	}
+	else {
+		// Something went wrong
+		printf("Cannot read File");
+	}
+	// Closing file
+	ini_file.close();
+	out_file.close();
+	return 0;
+}
+
+
+(2). Explain the following functions:
+     tellg(), tellp(), seekg(), seekp()
+
+(1). tellg(): The tellg() function is used with input streams, and returns the current “get”
+              position of the pointer in the stream. It has no parameters and returns a value 
+              of the member type pos_type, which is an integer data type representing the current
+              position of the get stream pointer.
+
+Code: 
+
+// example of tellg() function.
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	string str = "Hello, GFG";
+	istringstream in(str);
+
+	string word;	
+	in >> word;
+	
+	cout << "After reading the word \"" << word
+		<< "\" tellg() returns " << in.tellg() << '\n';
+}
+
+(2). tellp(): The tellp() function is used with output streams, and returns the current “put” 
+              position of the pointer in the stream. It has no parameters and return a value of the
+              member type pos_type, which is an integer data type representing the current position 
+              of the put stream pointer.
+
+
+Code: 
+
+// cpp code to get the position at particular
+// position using tellp() function
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+	fstream file;
+
+	// open file in read and write mode
+	file.open("myfile.txt", ios::out);
+	file << "geeksforgeeks";
+
+	// print the position of the pointer in file
+	cout << "the current position of pointer is :"
+		<< file.tellp() << endl;
+
+	// close the open file
+	file.close();
+}
+
+
+(3). seekg(): seekg() is a function in the iostream library that allows you to seek an arbitrary position 
+              in a file. It is included in the <fstream> header file and is defined for the istream class.
+              It is used in file handling to sets the position of the next character to be extracted from 
+              the input stream from a given file.
+
+
+Code: 
+
+// CPP Program to demonstrate the
+// seekg function in file
+// handling
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+// Driver Code
+int main(int argc, char** argv)
+{
+	// Open a new file for input/output operations
+	fstream myFile("test.txt",
+				ios::in | ios::out | ios::trunc);
+
+	// Add the characters "Hello World" to the file
+	myFile << "Hello World";
+
+	// Seek to 6 characters from the beginning of the file
+	myFile.seekg(6, ios::beg);
+
+	// Read the next 5 characters from the file into a
+	// buffer
+	char A[6];
+	myFile.read(A, 5);
+
+	// End the buffer with a null terminating character
+	A[5] = 0;
+
+	// Output the contents read from the file and close it
+	cout << A << endl;
+
+	myFile.close();
+}
+
+(4). seekp(): It is a function in the iostream library that allows you to seek an arbitrary position in a file.
+              It is included in the <fstream> header file and is defined for the istream class. It is used in 
+              file handling to sets the position of the next character to be extracted from the input stream from a given file.
+
+
+Code:
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class student {
+	int rno;
+	char name[20];
+
+public:
+	void getdata()
+	{
+	name = "sumeet" rno = 11;
+	}
+
+	void putdata()
+	{
+		cout << rno << endl
+			<< name << endl;
+	}
+
+	// accepts the serial number
+	// of record to be displayed
+	void DisplayRecordAtPosition(int);
+};
+
+void student::DisplayRecordAtPosition(int n)
+{
+
+	ofstream ofs;
+
+	// opening the file in writing mode
+	ofs.open("he.dat", ios::out | ios::binary);
+
+	// displays the size of the object
+	// sizeof object is 22
+	// char[20]+int = 1*20 + 2 = 22
+	cout << "size of record: "
+		<< sizeof(*this) << endl;
+
+	// Using seekp() method to change position
+	ofs.seekp((n - 1) * sizeof(student));
+
+	// Writing in the new position
+ofs.write(char*)this, sizeof(student));
+
+// Closing the output stream
+ofs.close();
+
+ifstream ifs;
+ifs.open("he.dat", ios::in | ios::binary);
+ifs.seekg((n - 1) * sizeof(student);
+ifs.read((char*)this, sizeof(student)) ";
+putdata();
+ifs.close();
+}
+
+//seekp() method using the binary file
+
+int main()
+{
+	student s;
+	int pos = 1;
+
+	s.getdata();
+
+	cout << "record no " << pos
+		<< " (position int file "
+		<< pos - 1 << ")\n";
+	s.DisplayRecordAtPosition(pos);
+
+	return 0;
+}
+
+
+
+

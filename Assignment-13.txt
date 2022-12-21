@@ -1,0 +1,127 @@
+(1). Create a class distance that distance in feet and inches,
+     overload operator+ for this class.
+Ans.
+
+#include<iostream.h>
+#include<conio.h>
+
+class Distance
+{
+	int feet;
+	int inch;
+public:
+	void getData()
+	{
+		cout<<"\nEnter feet,inch: ";
+		cin>>feet>>inch;
+	}
+
+	void putData()
+	{
+		cout<<"\nFeet="<<feet<<", Inch="<<inch;
+	}
+
+	void operator +=(Distance d2)
+	{
+		feet+=d2.feet;
+		inch+=d2.inch;
+
+		feet += inch / 12;
+		inch = inch % 12;
+	}
+};
+
+
+int main()
+{
+
+
+	Distance d1,d2;
+
+	d1.getData();
+	d2.getData();
+
+	d1+=d2;
+
+	d1.putData();
+
+	return 0;
+}
+
+
+(2). List out differences between default arguments and operator 
+     overloading and which one is better.
+
+Ans. (1). Default Arguments:
+     A default argument is a value provided in
+     a function declaration that is automatically assigned by the
+     compiler if the calling function doesn’t provide a value for
+     the argument. In case any value is passed, the default value is overridden. 
+
+Code: 
+
+#include <iostream>
+using namespace std;
+
+// A function with default arguments,
+// it can be called with
+// 2 arguments or 3 arguments or 4 arguments.
+
+int sum(int x, int y, int z = 0, int w = 0) //assigning default values to z,w as 0
+{
+	return (x + y + z + w);
+}
+
+
+int main()
+{
+	// Statement 1
+	cout << sum(10, 15) << endl;
+
+	// Statement 2
+	cout << sum(10, 15, 25) << endl;
+
+	// Statement 3
+	cout << sum(10, 15, 25, 30) << endl;
+	return 0;
+}
+
+
+(2). Operator overloading:
+     we can make operators work for user-defined classes. This means C++ has
+     the ability to provide the operators with a special meaning for a data type,
+     this ability is known as operator overloading.
+
+Code: 
+
+
+#include<iostream>
+using namespace std;
+
+class Complex {
+private:
+	int real, imag;
+public:
+	Complex(int r = 0, int i = 0) {real = r; imag = i;}
+	
+	// This is automatically called when '+' is used with
+	// between two Complex objects
+	Complex operator + (Complex const &obj) {
+		Complex res;
+		res.real = real + obj.real;
+		res.imag = imag + obj.imag;
+		return res;
+	}
+	void print() { cout << real << " + i" << imag << '\n'; }
+};
+
+int main()
+{
+	Complex c1(10, 5), c2(2, 4);
+	Complex c3 = c1 + c2;
+	c3.print();
+}
+
+
+
+

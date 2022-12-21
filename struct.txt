@@ -1,0 +1,49 @@
+(1). Size of structure Data in Snippet 1: 
+
+
+Snippet 1: 
+
+struct Data {
+    double A;
+    char B;
+    char C;
+};
+
+
+Size = (8 + 1 + 1) Bytes 10 Bytes
+
+
+(2). Write a function to swap values of a structure by reference.
+     the structure has an int and a char data: 
+
+
+#include<iostream>
+using namespace std;
+
+struct swap{
+        
+
+int main()
+{
+    int a,b;
+
+    cout<<"\nEnter 1st number :: ";
+    cin>>a;
+    cout<<"\nEnter 2nd number :: ";
+    cin>>b;
+
+    cout<<"\nBefore Swapping :: \n\ta = "<<a<<"\tb = "<<b<<"\n";
+    swap(a,b);
+    cout<<"\nAfter Swapping :: \n\ta = "<<a<<"\tb = "<<b<<"\n";
+
+    return 0;
+}
+
+void swap(int & x,int & y)
+{
+    int temp;
+    temp=x;
+    x=y;
+    y=temp;
+}
+

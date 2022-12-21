@@ -1,0 +1,20 @@
+Q. Write a macro to multiply 2 numbers
+Ans. 
+
+#include<stdio.h>
+#include<conio.h>
+#define prod(t,r) t*r
+
+int main()
+{
+
+int a,b,c;
+printf("enter two no. for finding product\n");
+scanf("%d%d",&a,&b);
+c=prod(a,b);
+printf("%d",c);
+
+return 0;
+
+}
+

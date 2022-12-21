@@ -1,0 +1,110 @@
+(1). Enqueue Operation:
+
+Code:
+
+
+// CPP code to illustrate Queue in
+// Standard Template Library (STL)
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+// Print the queue
+void showq(queue<int> create_queue)
+{
+	queue<int> g = create_queue;
+	while (!g.empty()) {
+		cout << '\t' << g.front();
+		g.pop();
+	}
+	cout << '\n';
+}
+
+// Driver Code
+int main()
+{
+	queue<int> generate_queue;
+
+	generate_queue.push(10);
+	generate_queue.push(20);
+	generate_queue.push(30);
+      generate_queue.push(40);
+	generate_queue.push(50);
+	generate_queue.push(60);
+	generate_queue.push(70);
+	generate_queue.push(80);
+	generate_queue.push(90);
+	generate_queue.push(100);
+
+	cout << "The queue generate_queue is : ";
+	showq(generate_queue);
+
+	cout << "\ngenerate_queue.size() : " << generate_queue.size();
+	cout << "\ngenerate_queue.front() : " << generate_queue.front();
+	cout << "\ngenerate_queue.back() : " << generate_queue.back();
+
+	cout << "\ngenerate_queue.pop() : ";
+	generate_queue.pop();
+	showq(generate_queue);
+
+	return 0;
+}
+
+
+
+
+(2). Dequeue Operation:
+
+Code:
+
+
+// CPP code to illustrate Queue in
+// Standard Template Library (STL)
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+// Print the queue
+void showq(queue<int> create_queue)
+{
+	queue<int> g = create_queue;
+	while (!g.empty()) {
+		cout << '\t' << g.front();
+		g.pop();
+	}
+	cout << '\n';
+}
+
+// Driver Code
+int main()
+{
+	queue<int> generate_queue;
+
+	generate_queue.pop(10);
+	generate_queue.pop(20);
+	generate_queue.pop(30);
+      generate_queue.pop(40);
+	generate_queue.pop(50);
+	generate_queue.pop(60);
+	generate_queue.pop(70);
+	generate_queue.pop(80);
+	generate_queue.pop(90);
+	generate_queue.pop(100);
+
+	cout << "The queue generate_queue is : ";
+	showq(generate_queue);
+
+	cout << "\ngenerate_queue.size() : " << generate_queue.size();
+	cout << "\ngenerate_queue.front() : " << generate_queue.front();
+	cout << "\ngenerate_queue.back() : " << generate_queue.back();
+
+	cout << "\ngenerate_queue.pop() : ";
+	generate_queue.pop();
+	showq(generate_queue);
+
+	return 0;
+}
+
+

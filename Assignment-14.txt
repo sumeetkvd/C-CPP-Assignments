@@ -1,0 +1,179 @@
+(1). Create a class Shape.
+        Shape class should be abstract
+        Declare a function area() that has to be implemented by the subclasses.
+        Inherit two subclasses Square and Rectangle.
+        Implement a function area that returns the area of the shape.
+        Create a pointer of type class Shape and find the area of square and rectangle 
+
+Ans:
+
+#include <iostream>
+using namespace std;
+ 
+class Shape
+{
+  protected:
+    double width, height;
+  public:
+    void set_data (double a, double b)
+    {
+        width = a;
+        height = b;
+    }
+    virtual double area() = 0;
+};
+ 
+class Rectangle: public Shape
+{
+public:
+    double area ()
+    {
+        return (width * height);
+    }
+};
+ 
+class Triangle: public Shape
+{
+public:
+    double area ()
+    {
+        return (width * height)/2;
+    }
+};
+ 
+int main ()
+{
+    Shape *sPtr;
+	
+    Rectangle Rect;
+    sPtr = &Rect;
+ 
+    sPtr -> set_data (5,3);
+    cout << "Area of Rectangle is " << sPtr -> area() << endl;
+ 
+    Triangle Tri;
+    sPtr = &Tri;
+ 
+    sPtr -> set_data (4,6);
+    cout << "Area of Triangle is " << sPtr -> area() << endl;	
+    return 0;
+}
+
+
+(2). Give an example displaying Overload, override and hiding of a function.
+
+Ans:
+
+Overload Function: Function overloading is a feature of object-oriented 
+                   programming where two or more functions can have the 
+                   same name but different parameters. When a function name
+                   is overloaded with different jobs it is called Function Overloading.
+Code:
+
+#include <iostream>
+using namespace std;
+
+
+void add(int a, int b)
+{
+cout << "sum = " << (a + b);
+}
+
+void add(double a, double b)
+{
+	cout << endl << "sum = " << (a + b);
+}
+
+// Driver code
+int main()
+{
+	add(10, 2);
+	add(5.3, 6.2);
+
+	return 0;
+}
+
+
+Override Function: When function with same signature as  base class is defined in derived
+                   class, its called function overriding.
+
+
+Code: 
+
+
+// Function Overriding
+#include<iostream>
+using namespace std;
+
+class BaseClass
+{
+public:
+	virtual void Display()
+	{
+		cout << "\nThis is Display() method"
+				" of BaseClass";
+	}
+	void Show()
+	{
+		cout << "\nThis is Show() method "
+			"of BaseClass";
+	}
+};
+
+class DerivedClass: public BaseClass
+{
+public:
+	// Overriding method - new working of
+	// base class's display method
+	void Display()
+	{
+		cout << "\nThis is Display() method"
+			" of DerivedClass";
+	}
+};
+
+int main()
+{
+	DerivedClass dr;
+	BaseClass &bs = dr;
+	bs.Display();
+	dr.Show();
+}
+
+
+Hiding Function: When function with the same name as the base class and with different
+                 arguments are defined in the derived class, it's called function hiding.
+
+Code:
+
+// class member method using the 'using' keyword
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+	int fun() { cout << "Base::fun() called"; }
+};
+
+class Derived: public Base {
+public:
+	using Base::fun;
+
+	int fun(char c) // Makes Base::fun() and Base::fun(int ) // unhidden
+					
+	{
+		cout << "Derived::fun(char c) called";
+	}
+};
+
+int main()
+{
+	Derived d;
+	d.fun(); // Works fine now
+	return 0;
+}
+
+
+
+
+

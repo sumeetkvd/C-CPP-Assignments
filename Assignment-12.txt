@@ -1,0 +1,76 @@
+(1). Define a function print that prints an array of strings with a separator in between.
+     An array of strings and separators should come from parameters and should default to 
+     string “\n”.
+
+Code:
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int length(const char* arr[]){
+    int count = 0;
+    while(arr[count]!= NULL){
+        count++;
+    }
+
+    return count;
+}
+
+void printing_string(const char* arr[], char sep = '\n'){
+    int i=0,j=0;
+    for(i;i<length(arr);i++){
+        if(i==length(arr)-1){
+            cout<<arr[i];
+        }
+        
+        else{
+            cout<<arr[i] << sep ;
+        }
+    }
+
+}
+
+
+int main(){
+    int i,j,k;
+    //string str;
+    //cout<< " Enter the string :" << endl;
+    //getline(cin,str);
+    //cout<<" Entered string is: " << endl;
+    const char* arr[50] = {"My" , "name" , "is" , "Sumeet" , "Kumar"};
+    printing_string(arr,' ');
+    return 0;
+
+
+}
+
+
+(2). Swappin the vales using call by reference:
+
+Code:
+
+
+#include <iostream>
+using namespace std;
+
+
+void swap(int &num1, int &num2){
+    int temp = num1;
+    num1 = num2;
+    num2 = temp;
+}
+
+int main(){
+    int a,b;
+    cout<<"Enter values of a and b for swapping: "<<endl;
+    cin>>a>>b;
+    cout<< "Before swapping the value of a and b are: " << endl;
+    cout << "a is: " << a << " " << "b is:" << b <<endl;
+    swap(a,b) ;
+    cout<< " a is: " << a << " " << " b is: "<< b << endl;
+    return 0;
+}
+
+ 
